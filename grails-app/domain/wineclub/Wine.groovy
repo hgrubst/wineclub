@@ -2,18 +2,23 @@ package wineclub
 
 class Wine {
 
-    static constraints = {
-    }
-    
-    String name
-    String type
-    String region
-    String year
-    Double rating
-    
-    TastingSession tastingSession
-    
-    String toString(){
-    	name + " " + year
-    }
+	static constraints = {
+		name()
+		grape()
+		region()
+		year()
+	}
+
+	static hasMany = [rating:Rating]
+
+	String name
+	String grape
+	String region
+	String year
+
+	TastingSession tastingSession
+
+	String toString(){
+		name + " " + year
+	}
 }
