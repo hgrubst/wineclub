@@ -6,6 +6,7 @@
 .project
 eclipse
 target
+target-eclipse
 /plugins
 /web-app/plugins
 /web-app/WEB-INF/classes
