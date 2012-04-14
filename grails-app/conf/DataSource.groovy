@@ -26,17 +26,22 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE"
             pooled = true
+            driverClassName = "com.mysql.jdbc.Driver"
+            username = "wineclub"
+            password = "changeme!"
+            url = "jdbc:mysql://ec2-50-19-213-178.compute-1.amazonaws.com/wineclub"
+            loggingSql = false
+
             properties {
-               maxActive = -1
-               minEvictableIdleTimeMillis=1800000
-               timeBetweenEvictionRunsMillis=1800000
-               numTestsPerEvictionRun=3
-               testOnBorrow=true
-               testWhileIdle=true
-               testOnReturn=true
-               validationQuery="SELECT 1"
+                maxActive = 25
+                maxIdle = 5
+                minIdle = 1
+                initialSize = 1
+                minEvictableIdleTimeMillis = 60000
+                timeBetweenEvictionRunsMillis = 60000
+                maxWait = 10000
+                validationQuery = "select 1"
             }
         }
     }
