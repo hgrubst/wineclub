@@ -21,17 +21,21 @@
 	</head>
 	<body>
 		<div class="container">
-			<header>
+			<header class="page-header">
 				<div class="pull-right">Sign in</div>
-				<h1>Wine club!</h1>
+				<span><g:link uri="/">Wine club!</g:link></span>
 			</header>
-			<nav>
-				<ul class="nav nav-tabs">
-					<li ${webRequest.controllerName == null ? "class='active'":""}><a href="${request.contextPath}">Home</a></li>
+			<div class="navbar">
+			  <div class="navbar-inner">
+			    <div class="container">
+				<ul class="nav">
+					<li ${webRequest.controllerName == null ? "class='active'":""}><g:link uri="/">Home</g:link></li>
 					<li ${webRequest.controllerName == "wine"? "class='active'":""}><g:link controller="wine">Wines</g:link></li>
 					<li ${webRequest.controllerName == "tastingSession"? "class='active'":""}><g:link controller="tastingSession">Tasting sessions</g:link></li>
 				</ul>
-			</nav>
+			    </div>
+			  </div>
+			</div>
 			<g:layoutBody/>
 			<div class="footer" role="contentinfo"></div>
 			<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
