@@ -2,9 +2,8 @@ package wineclub
 
 class Rating {
 
-    static constraints = {
-    }
+	static belongsTo = [wine:Wine]
 	
-	double rating
+	double value
 	Comment comment
 }

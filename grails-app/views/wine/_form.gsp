@@ -34,19 +34,18 @@
 	<g:textField name="year" value="${wineInstance?.year}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: wineInstance, field: 'rating', 'error')} ">
-	<label for="rating">
-		<g:message code="wine.rating.label" default="Rating" />
-		
-	</label>
-	<g:select name="rating" from="${wineclub.Rating.list()}" multiple="multiple" optionKey="id" size="5" value="${wineInstance?.rating*.id}" class="many-to-many"/>
-</div>
+<%--<div class="fieldcontain ${hasErrors(bean: wineInstance, field: 'rating', 'error')} ">--%>
+<%--	<label for="rating">--%>
+<%--		<g:message code="wine.rating.label" default="Rating" />--%>
+<%--		--%>
+<%--	</label>--%>
+<%--	<g:select name="rating" from="${wineclub.Rating.list()}" multiple="multiple" optionKey="id" size="5" value="${wineInstance?.rating*.id}" class="many-to-many"/>--%>
+<%--</div>--%>
 
-<div class="fieldcontain ${hasErrors(bean: wineInstance, field: 'tastingSession', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: wineInstance, field: 'tastingSession', 'error')}">
 	<label for="tastingSession">
 		<g:message code="wine.tastingSession.label" default="Tasting Session" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="tastingSession" name="tastingSession.id" from="${wineclub.TastingSession.list()}" optionKey="id" required="" value="${wineInstance?.tastingSession?.id}" class="many-to-one"/>
+	<g:select id="tastingSession" name="tastingSession.id" from="${wineclub.TastingSession.list()}" optionKey="id" value="${wineInstance?.tastingSession?.id}" class="many-to-one"/>
 </div>
 

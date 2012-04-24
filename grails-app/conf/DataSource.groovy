@@ -12,9 +12,29 @@ hibernate {
 // environment specific settings
 environments {
     development {
+//        dataSource {
+//            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+//            url = "jdbc:h2:mem:devDb;MVCC=TRUE"
+//        }
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE"
+            dbCreate = "create-drop"
+            pooled = true
+            driverClassName = "com.mysql.jdbc.Driver"
+            username = "root"
+            password = ""
+            url = "jdbc:mysql://localhost/wineclub"
+            loggingSql = false
+
+            properties {
+                maxActive = 25
+                maxIdle = 5
+                minIdle = 1
+                initialSize = 1
+                minEvictableIdleTimeMillis = 60000
+                timeBetweenEvictionRunsMillis = 60000
+                maxWait = 10000
+                validationQuery = "select 1"
+            }
         }
     }
     test {

@@ -100,4 +100,27 @@ class WineController {
             redirect(action: "show", id: params.id)
         }
     }
+	
+	def rate(String commentParam, double ratingParam){
+		
+//		def wine = new Wine()
+//		wine.grape = "Shiraz"
+//		wine.year = "2010"
+//		wine.region="Barossa"
+//		wine.name="PepperJack"
+//		wine.save(failOnError: true)
+//	
+//		wine.addToRatings(new Rating(value:13,comment:new Comment(text:"this is a comment")))
+
+		
+		def wineInstance = Wine.get(params.id)
+
+//		wineInstance.addToRatings(new Rating(value:16))
+//		
+//		wineInstance.addToRatings(new Rating(value:ratingParam,comment:new Comment(text:commentParam)))
+		
+		new Rating(wine:wineInstance,value:ratingParam,comment:new Comment(text:commentParam)).save()
+		
+		render(view:"show", model:[wineInstance:wineInstance])
+	}
 }

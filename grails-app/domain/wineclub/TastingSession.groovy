@@ -5,7 +5,7 @@ class TastingSession {
     static constraints = {
     }
     
-    static hasMany = [wine:Wine, comment:Comment]
+    static hasMany = [wines:Wine, comment:Comment]
     
 	String location
     Date date

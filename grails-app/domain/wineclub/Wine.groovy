@@ -3,13 +3,14 @@ package wineclub
 class Wine {
 
 	static constraints = {
-		name()
+		name(blank:false)
 		grape()
 		region()
 		year()
+		tastingSession nullable:true
 	}
 
-	static hasMany = [rating:Rating]
+	static hasMany = [ratings:Rating]
 
 	String name
 	String grape
