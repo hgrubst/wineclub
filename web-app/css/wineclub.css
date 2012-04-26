@@ -6,6 +6,12 @@ body{
 }
 
 .rating{
-	padding-bottom:5px;
+	padding-bottom:2px;
+	margin-bottom:4px;
 	border-bottom:thin solid lightgray;
+}
+
+.rating  em{
+	font-size:11px;
+	color:gray;
 }

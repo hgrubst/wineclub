@@ -83,26 +83,36 @@
 		<div class="row">
 			<div class="offset2 span6">
 				<h2>Ratings</h2>
-				<g:each in="${wineInstance.ratings}">
-					<div class="rating">
-						<p>score : ${it.value}</p>
-						<p>${it.comment.text}</p>
-					</div>
-				</g:each>
+				
+				<div id="ratings">
+					<g:render template="rating" collection="${wineInstance.ratings}" />
+				</div>
+				
 				<br/>
+
 				<h4>Rate this wine</h4>
-				<g:form action="rate">
+				<g:javascript>
+					function addRating(data) {
+					    $(data).hide().appendTo("#ratings").fadeIn(999);
+					    //$("#ratings").append(data);
+					    document.getElementById("ratingForm").reset();
+					}
+				</g:javascript>
+				<g:formRemote url="[controller: 'wine', action:'rate']" onFailure="alert('failed')" onSuccess="addRating(data)" name="ratingForm">
 					<g:hiddenField name="id" value="${wineInstance.id}"/>
 					<div>
-						<g:textField name="rating" placeholder="Rate this wine"/>
+						<input name="title" required placeholder="Title"/>
 					</div>
 					<div>
-						<textarea name="comment" placeholder="Comment on this wine"></textarea>
+						<input name="rating" type="number" min="0" max="100" step="1" placeholder="Rate (0-100)" required/>
 					</div>
 					<div>
-						<g:submitButton name="submit"/>
+						<textarea name="comment" placeholder="Comment"></textarea>
 					</div>
-				</g:form>
+					<div>
+						<g:submitButton name="Post"/>
+					</div>
+				</g:formRemote>
 			</div>
 		</div>	
 	</body>

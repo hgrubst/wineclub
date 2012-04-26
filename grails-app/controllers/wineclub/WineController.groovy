@@ -103,16 +103,19 @@ class WineController {
 
 	def rate(){
 		def wineInstance = Wine.get(params.id)
+
+		def commentTitle = params.title;
+		def commentText = params.comment;
+		def ratingValue = params.rating;
+
+		def rating = new Rating(value:ratingValue,comment:new Comment(title:commentTitle,text:commentText))
+		wineInstance.addToRatings(rating)
+
 		
-		def comment = params.comment;
-		def rating = params.rating;
-
-		wineInstance.addToRatings(new Rating(value:rating,comment:new Comment(text:comment)))
-
-		if(!wineInstance.save()){
+		if(!wineInstance.save(flush:true)){
 			//handle error?
 		}
 
-		render(view:"show", model:[wineInstance:wineInstance])
+		render(template: "rating", model: [rating: rating])
 	}
 }

@@ -10,6 +10,10 @@ class Wine {
 		tastingSession nullable:true
 	}
 
+	static mapping = {
+		ratings sort: 'dateCreated', order: 'asc'
+	}
+	
 	static hasMany = [ratings:Rating]
 
 	String name

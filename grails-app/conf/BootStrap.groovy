@@ -13,13 +13,11 @@ class BootStrap {
 		wine.name="PepperJack" 
 		wine.save(failOnError: true)
 	
-		wine.addToRatings(new Rating(value:13,comment:new Comment(text:"this is a comment")))
-		
+		wine.addToRatings(new Rating(value:13,comment:new Comment(title:"Awesome wine!", text:"this is a comment")))
 		
 		def wine2 = Wine.get(wine.id)
-		wine2.addToRatings(new Rating(value:15,comment:new Comment(text:"this is a comment")))
+		wine2.addToRatings(new Rating(value:15,comment:new Comment(title:"Very subtle", text:"this is a comment")))
 		
-//		new Comment(text:"single comment with no rating associated1").save()	
     }
     def destroy = {
     }
