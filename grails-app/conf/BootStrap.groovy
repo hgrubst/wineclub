@@ -16,6 +16,8 @@ class BootStrap {
 		wine.addToRatings(new Rating(value:13,comment:new Comment(text:"this is a comment")))
 		
 		
+		def wine2 = Wine.get(wine.id)
+		wine2.addToRatings(new Rating(value:15,comment:new Comment(text:"this is a comment")))
 		
 //		new Comment(text:"single comment with no rating associated1").save()	
     }
