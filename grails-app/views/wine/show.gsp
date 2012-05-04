@@ -77,7 +77,22 @@
 			
 			</div>
 			<div class="span4">
-				<img src="http://winesfromitaly.com/media/catalog/product/cache/1/image/300x/8a96b66ed6c352a00473260c82658c0c/placeholder/default/generic_bottle_trans_300x300.png"/>
+			    <g:if test="${wineInstance.image}">
+                    <img src="${createLink(controller:'image',action:'show',id:wineInstance.image.id)}"></img>			     
+			    </g:if>
+                <g:else>
+				<img src="http://winesfromitaly.com/media/catalog/product/cache/1/image/300x/8a96b66ed6c352a00473260c82658c0c/placeholder/default/generic_bottle_trans_300x300.png" id="wineImage"/>
+                </g:else>			    
+               <!-- <g:formRemote url="[controller: 'wine', action:'uploadImage']" onFailure="alert('failed')" onSuccess="Wine.switchImage(data)" name="ratingForm" type="multipart/form-data" method="post">
+                    <g:hiddenField name="id" value="${wineInstance.id}"/>               
+                    <input type="file" name="myFile" />
+                    <input type="submit" />
+                </g:formRemote> -->
+                <g:uploadForm action="uploadImage">
+                    <g:hiddenField name="id" value="${wineInstance.id}"/>               
+                    <input type="file" name="bytes" />
+                    <input type="submit" />
+                </g:uploadForm>
 			</div>
 		</div>
 		<div class="row">
@@ -91,14 +106,7 @@
 				<br/>
 
 				<h4>Rate this wine</h4>
-				<g:javascript>
-					function addRating(data) {
-					    $(data).hide().appendTo("#ratings").fadeIn(999);
-					    //$("#ratings").append(data);
-					    document.getElementById("ratingForm").reset();
-					}
-				</g:javascript>
-				<g:formRemote url="[controller: 'wine', action:'rate']" onFailure="alert('failed')" onSuccess="addRating(data)" name="ratingForm">
+				<g:formRemote url="[controller: 'wine', action:'rate']" onFailure="alert('failed')" onSuccess="Wine.addRating(data)" name="ratingForm">
 					<g:hiddenField name="id" value="${wineInstance.id}"/>
 					<div>
 						<input name="title" required placeholder="Title"/>

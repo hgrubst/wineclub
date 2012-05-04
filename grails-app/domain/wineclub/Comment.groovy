@@ -6,11 +6,12 @@ class Comment {
 		title nullable:false
 	}
 
-	//need to specify this to ensure the cascading from Rating works properly
+	//enable cascading from Rating but not bidirection
 	static belongsTo = Rating
 	
 	String title
 	String text
 	Date dateCreated
-	Date lastUpdated
+	Date lastUpdated      
+	
 }

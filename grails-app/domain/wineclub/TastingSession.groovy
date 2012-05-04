@@ -4,8 +4,12 @@ class TastingSession {
 
     static constraints = {
     }
+
+    static mapping = {
+        comments joinTable: false
+    }
     
-    static hasMany = [wines:Wine, comment:Comment]
+    static hasMany = [wines:Wine, comments:Comment]
     
 	String location
     Date date

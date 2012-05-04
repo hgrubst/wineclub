@@ -1,5 +1,7 @@
 package wineclub
 
+import java.util.Date;
+
 class Wine {
 
 	static constraints = {
@@ -8,6 +10,7 @@ class Wine {
 		region()
 		year()
 		tastingSession nullable:true
+		image nullable:true
 	}
 
 	static mapping = {
@@ -20,6 +23,10 @@ class Wine {
 	String grape
 	String region
 	String year
+	Image image
+	Date dateCreated
+	Date lastUpdated
+
 
 	TastingSession tastingSession
 

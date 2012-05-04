@@ -102,6 +102,8 @@ class WineController {
 	}
 
 	def rate(){
+		println "entering WineController.rate"
+		
 		def wineInstance = Wine.get(params.id)
 
 		def commentTitle = params.title;
@@ -117,5 +119,24 @@ class WineController {
 		}
 
 		render(template: "rating", model: [rating: rating])
+	}
+	
+	def uploadImage(){
+		def f = request.getFile('bytes')
+
+	    def wineInstance = Wine.get(params.id)
+		if(!wineInstance.image){
+			wineInstance.image = new Image()			
+		}
+
+		println f.originalFilename
+		                              
+		wineInstance.image.fullName = f.originalFilename
+		wineInstance.image.extension = f.originalFilename.substring(f.originalFilename.lastIndexOf(".")+1)
+		wineInstance.image.bytes = f.bytes   		
+        wineInstance.save(flush:true)
+        
+		redirect(action: "show", id: params.id)
+
 	}
 }
